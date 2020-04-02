@@ -19,10 +19,4 @@ def calculate(table, needs):
         else:
             add(new, i, j)
 
-    for i, j in [(i, new[i]) for i in new.keys()]:
-        if type(j) == type(0.0):
-            new[i] = math.ceil(j)
-
-    # new
-
     return [new, a]
