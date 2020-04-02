@@ -30,5 +30,6 @@ while utils.calculate(table, needed)[1]:
     needed = utils.calculate(table, needed)[0]
     # print(needed)
 
+print("Raw data: {}".format(str(needed)))
 for (key, value) in needed.items():
     print("{}: {}个".format(key, value))
