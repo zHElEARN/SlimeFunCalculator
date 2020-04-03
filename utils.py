@@ -9,15 +9,28 @@ def add(a, b, c):
 
 
 def calculate(table, needs, exist):
-    a = False
-    need = {}
-    for i, j in [(i, needs[i]) for i in needs.keys()]:
-        if i in table.keys():
-            a = True
-            for k in table[i].keys():
-                add(need, k, table[i][k] * j)
-        else:
-            add(need, i, j)
+    loop = False
+    nextNeed = {}
 
-    print()
-    return [need, a]
+    # 遍历所有需要的
+    for key, value in needs.items():
+        # 如果表中有需要的
+        if key in table.keys():
+
+            if key in exist:
+                print("exist")
+                continue
+
+            # 设置成需要继续循环
+            loop = True
+
+            # 循环表中获得需要的配方
+            for subNeed in table[key].keys():
+                # 添加到下一个需要的
+                add(nextNeed, subNeed, table[key][subNeed] * value)
+        # 如果没有需要的
+        else:
+            # 把当前有的放进下一个需要的
+            add(nextNeed, key, value)
+
+    return [nextNeed, loop]
