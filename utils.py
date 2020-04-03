@@ -8,15 +8,16 @@ def add(a, b, c):
         a[b] = c
 
 
-def calculate(table, needs):
+def calculate(table, needs, exist):
     a = False
-    new = {}
+    need = {}
     for i, j in [(i, needs[i]) for i in needs.keys()]:
         if i in table.keys():
             a = True
             for k in table[i].keys():
-                add(new, k, table[i][k]*j)
+                add(need, k, table[i][k] * j)
         else:
-            add(new, i, j)
+            add(need, i, j)
 
-    return [new, a]
+    print()
+    return [need, a]
