@@ -3,7 +3,6 @@ import utils
 import sys
 import json
 import argparse
-import math
 
 # 定义argparse解析器
 parser = argparse.ArgumentParser(prog="SlimeFunCalculator", description="粘液科技计算器")
@@ -49,16 +48,16 @@ print("Raw data: {}".format(str(needed)))
 
 # 处理数据
 for (key, value) in needed.items():
-    if value > 64:
-        if value != (math.floor(value / 64) * 64):
+    if value >= 64:
+        if value % 64 != 0:
             print(
                 "{}: {}组{}个".format(
                     key,
-                    math.floor(value / 64),
-                    int(value - (math.floor(value / 64) * 64)),
+                    int(value // 64),
+                    int(value % 64),
                 )
             )
         else:
-            print("{}: {}组".format(key, math.floor(value / 64)))
+            print("{}: {}组".format(key, int(value // 64)))
     else:
-        print("{}: {}个".format(key, math.ceil(value)))
+        print("{}: {}个".format(key, int(value)))
